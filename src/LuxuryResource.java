@@ -1,6 +1,13 @@
 public class LuxuryResource implements Resource{
+
+    private float quantity;
+
+    public LuxuryResource(float quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public float getResourceQuantity() {
-        return 0;
+        return quantity;
     }
 }

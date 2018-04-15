@@ -1,6 +1,12 @@
 public class UsefullResource implements Resource {
+    private float quantity;
+
+    public UsefullResource(float quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public float getResourceQuantity() {
-        return 0;
+        return quantity;
     }
 }

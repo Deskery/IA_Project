@@ -1,6 +1,12 @@
 public class SpecialResource implements Resource{
+    private float quantity;
+
+    public SpecialResource(float quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public float getResourceQuantity() {
-        return 0;
+        return quantity;
     }
 }
