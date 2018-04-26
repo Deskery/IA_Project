@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Supervisor {
     private ArrayList<WorkerAgent> workers;
     private SupervisorVision vision;
     private float[][] distanceMatrix;
+    private HashMap<WorkerAgent,Integer> finalList ;
 
     public Supervisor(ArrayList<WorkerAgent> workers, float[][] distanceMatrix) {
         this.vision = new SupervisorVision();
@@ -33,5 +35,19 @@ public class Supervisor {
 
     public void setDistanceMatrix(float[][] distanceMatrix) {
         this.distanceMatrix = distanceMatrix;
+    }
+
+    public void generateList()
+    {
+        ArrayList<Tile> tiles = vision.getTiles();
+        ArrayList<TileHeuristic> heuristicTiles = new ArrayList<TileHeuristic>();
+        for( Tile t : tiles)
+        {
+            heuristicTiles.add(new TileHeuristic(1,HeuristicUtil.CheckTileHeuristic(t)));
+        }
+        for(WorkerAgent w : this.workers)
+        {
+            ArrayList<TileHeuristic> wTiles = new ArrayList<>(heuristicTiles);
+        }
     }
 }
