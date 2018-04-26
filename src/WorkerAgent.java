@@ -1,12 +1,14 @@
 public class WorkerAgent {
     private WorkerState state;
-    private Location currentLocation;
-    private Location goalLocation;
+    private int currentTile;
+    private int goalTile; //-1 = no goal
+    private IWorkerActions actionsUtil;
 
-    public WorkerAgent(WorkerState state, Location currentLocation, Location goalLocation) {
+    public WorkerAgent(WorkerState state, int currentTile, int goalTile) {
         this.state = state;
-        this.currentLocation = currentLocation;
-        this.goalLocation = goalLocation;
+        this.currentTile = currentTile;
+        this.goalTile = goalTile;
+        this.actionsUtil = new WorkerAction();
     }
 
     public WorkerState getState() {
@@ -17,23 +19,20 @@ public class WorkerAgent {
         this.state = state;
     }
 
-    public Location getCurrentLocation() {
-        return currentLocation;
+    public int getCurrentTile() {
+        return currentTile;
     }
 
-    public void setCurrentLocation(Location currentLocation) {
-        this.currentLocation = currentLocation;
+    public void setCurrentTile(int currentTile) {
+        this.currentTile = currentTile;
     }
 
-    public Location getGoalLocation() {
-        return goalLocation;
+    public int getGoalTile() {
+        return goalTile;
     }
 
-    public void setGoalLocation(Location goalLocation) {
-        this.goalLocation = goalLocation;
+    public void setGoalTile(int goalTile) {
+        this.goalTile = goalTile;
     }
 
-    public void calculNextGoal() {
-
-    }
 }
