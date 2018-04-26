@@ -1,11 +1,11 @@
-public class Case {
+public class Tile {
     private Location location;
     private EnvironmentType environmentType;
     private EnvironmentCharacteristics environmentCharacteristics;
     private Resource resource;
     private boolean amenagement;
 
-    public Case(Location location, EnvironmentType environmentType, EnvironmentCharacteristics environmentCharacteristics, Resource resource, boolean amenagement) {
+    public Tile(Location location, EnvironmentType environmentType, EnvironmentCharacteristics environmentCharacteristics, Resource resource, boolean amenagement) {
         this.location = location;
         this.environmentType = environmentType;
         this.environmentCharacteristics = environmentCharacteristics;

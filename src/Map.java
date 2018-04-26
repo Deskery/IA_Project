@@ -1,25 +1,25 @@
 import java.util.ArrayList;
 
 public class Map {
-    private ArrayList<Case> cases;
+    private ArrayList<Tile> tiles;
 
     public Map() {
-        this.cases = new ArrayList<>();
+        this.tiles = new ArrayList<>();
     }
 
-    public ArrayList<Case> getCases() {
-        return cases;
+    public ArrayList<Tile> getTiles() {
+        return tiles;
     }
 
-    public void setCases(ArrayList<Case> cases) {
-        this.cases = cases;
+    public void setTiles(ArrayList<Tile> tiles) {
+        this.tiles = tiles;
     }
 
-    public void addCase(Case c) {
-        cases.add(c);
+    public void addCase(Tile c) {
+        tiles.add(c);
     }
 
     public void addCase(Location location, EnvironmentType et, EnvironmentCharacteristics ec, Resource resource, boolean amenagement) {
-        cases.add(new Case(location, et, ec, resource, amenagement));
+        tiles.add(new Tile(location, et, ec, resource, amenagement));
     }
 }

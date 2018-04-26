@@ -27,7 +27,7 @@ public class XMLReader {
             Resource resource;
             boolean amenagement;
 
-            NodeList casesList = document.getElementsByTagName("Case");
+            NodeList casesList = document.getElementsByTagName("Tile");
             for (int i = 0; i < casesList.getLength(); i++) {
                 org.w3c.dom.Node node = casesList.item(i);
 
