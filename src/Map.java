@@ -23,4 +23,9 @@ public class Map extends Observable{
     public void addCase(Location location, EnvironmentType et, EnvironmentCharacteristics ec, Resource resource, boolean amenagement) {
         tiles.add(new Tile(location, et, ec, resource, amenagement));
     }
+
+    public void nextIteration() {
+        setChanged();
+        notifyObservers(tiles);
+    }
 }

@@ -1,13 +1,14 @@
 public class WorkerAgent {
+    private int idWorker;
     private WorkerState state;
     private int currentTile;
     private int goalTile; //-1 = no goal
     private IWorkerActions actionsUtil;
 
-    public WorkerAgent(WorkerState state, int currentTile, int goalTile) {
-        this.state = state;
+    public WorkerAgent(int idWorker, int currentTile) {
+        this.state = WorkerState.Idle;
         this.currentTile = currentTile;
-        this.goalTile = goalTile;
+        this.goalTile = -1;             // -1 = pas de but
         this.actionsUtil = new WorkerAction();
     }
 

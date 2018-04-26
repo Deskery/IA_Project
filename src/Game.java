@@ -5,6 +5,10 @@ public class Game {
     private ArrayList<Player> players;
     private int nbRound;
 
+    public Game() {
+        nbRound = 0;
+    }
+
     public Game(Map map, ArrayList<Player> players) {
         this.map = map;
         this.players = players;
@@ -33,5 +37,25 @@ public class Game {
 
     public void setNbRound(int nbRound) {
         this.nbRound = nbRound;
+    }
+
+    public void nextIteration() {
+        map.nextIteration();
+    }
+
+    public void setupGame(String mapPath, String playerPath, String workerPath) {
+        this.map = XMLReader.generateMap(mapPath);
+        float distanceMatrix[][] = AStar.generateDistanceMatrix(map.getTiles());
+
+        this.players = XMLReader.generatePlayers(playerPath);
+
+        for (Player player : this.players) {
+            ArrayList<WorkerAgent> workers = XMLReader.generateWorker(player.getIdPlayer(), workerPath);
+            Supervisor supervisor = new Supervisor(workers, distanceMatrix);
+            player.setWorkerSupervisor(supervisor);
+
+            // On ajoute le senseur vision du superviseur en temps qu'observeur de la map
+            map.addObserver(player.getWorkerSupervisor().getVision());
+        }
     }
 }

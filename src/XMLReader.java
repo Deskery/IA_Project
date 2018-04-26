@@ -151,4 +151,8 @@ public class XMLReader {
     public static ArrayList<Player> generatePlayers(String playerPath) {
         return new ArrayList<Player>();
     }
+
+    public static ArrayList<WorkerAgent> generateWorker(int idPlayer, String workerPath) {
+        return new ArrayList<WorkerAgent>();
+    }
 }
