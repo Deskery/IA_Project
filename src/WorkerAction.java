@@ -1,6 +1,6 @@
 public class WorkerAction implements IWorkerActions {
     @Override
-    public void moveTo(int idTuile) {
+    public void moveTo(int idTile) {
 
     }
 

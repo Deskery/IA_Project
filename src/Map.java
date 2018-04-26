@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Map {
+public class Map extends Observable{
     private ArrayList<Tile> tiles;
 
     public Map() {

@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class XMLReader {
     public static Map generateMap(String filePath) {
@@ -145,5 +146,9 @@ public class XMLReader {
         float locationX = Float.valueOf(element.getElementsByTagName("LocationX").item(0).getTextContent().trim());
         float locationY = Float.valueOf(element.getElementsByTagName("LocationY").item(0).getTextContent().trim());
         return new Location(locationX, locationY);
+    }
+
+    public static ArrayList<Player> generatePlayers(String playerPath) {
+        return new ArrayList<Player>();
     }
 }

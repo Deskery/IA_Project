@@ -1,3 +1,4 @@
 public class Player {
-    private Map map;
+    private int idPlayer;
+    private Supervisor workerSupervisor;
 }
