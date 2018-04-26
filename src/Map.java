@@ -26,6 +26,6 @@ public class Map extends Observable{
 
     public void nextIteration() {
         setChanged();
-        notifyObservers(tiles);
+        notifyObservers(this);
     }
 }

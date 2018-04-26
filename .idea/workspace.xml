@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2781b1ab-2d15-48d7-9fd0-3662ca5ad6b8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" afterPath="$PROJECT_DIR$/src/Game.java" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
       <change beforePath="$PROJECT_DIR$/src/Map.java" afterPath="$PROJECT_DIR$/src/Map.java" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" afterPath="$PROJECT_DIR$/src/Player.java" />
-      <change beforePath="$PROJECT_DIR$/src/WorkerAgent.java" afterPath="$PROJECT_DIR$/src/WorkerAgent.java" />
-      <change beforePath="$PROJECT_DIR$/src/XMLReader.java" afterPath="$PROJECT_DIR$/src/XMLReader.java" />
+      <change beforePath="$PROJECT_DIR$/src/SupervisorVision.java" afterPath="$PROJECT_DIR$/src/SupervisorVision.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,11 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Map.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Map.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Map.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="588">
-              <caret line="28" column="29" lean-forward="false" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+              <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#148#149#0" expanded="true" />
@@ -100,7 +96,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WorkerAgent.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WorkerAgent.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WorkerAgent.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
@@ -157,10 +153,11 @@
       <file leaf-file-name="SupervisorVision.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SupervisorVision.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+            <state relative-caret-position="441">
+              <caret line="21" column="40" lean-forward="false" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#212#213#0" expanded="true" />
                 <element signature="e#240#241#0" expanded="true" />
                 <element signature="e#291#292#0" expanded="true" />
                 <element signature="e#325#326#0" expanded="true" />
@@ -215,7 +212,6 @@
         <option value="$PROJECT_DIR$/src/LuxuryResource.java" />
         <option value="$PROJECT_DIR$/src/SpecialResource.java" />
         <option value="$PROJECT_DIR$/src/UsefullResource.java" />
-        <option value="$PROJECT_DIR$/src/SupervisorVision.java" />
         <option value="$PROJECT_DIR$/src/AStar.java" />
         <option value="$PROJECT_DIR$/src/Supervisor.java" />
         <option value="$PROJECT_DIR$/src/WorkerAction.java" />
@@ -224,8 +220,9 @@
         <option value="$PROJECT_DIR$/src/XMLReader.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Game.java" />
-        <option value="$PROJECT_DIR$/src/Map.java" />
         <option value="$PROJECT_DIR$/src/WorkerAgent.java" />
+        <option value="$PROJECT_DIR$/src/SupervisorVision.java" />
+        <option value="$PROJECT_DIR$/src/Map.java" />
       </list>
     </option>
   </component>
@@ -516,7 +513,7 @@
       <updated>1523654095285</updated>
       <workItem from="1523654098273" duration="3020000" />
       <workItem from="1523818022555" duration="5041000" />
-      <workItem from="1524766773983" duration="5844000" />
+      <workItem from="1524766773983" duration="6520000" />
     </task>
     <task id="LOCAL-00001" summary="Map generation (not tested)">
       <created>1523831659480</created>
@@ -546,11 +543,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524770642822</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Début de la génération de partie + ajout d'un id au worker">
+      <created>1524773490976</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1524773490976</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13905000" />
+    <option name="totallyTimeSpent" value="14581000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -591,7 +595,8 @@
     <MESSAGE value="Skeleton" />
     <MESSAGE value="supervisor" />
     <MESSAGE value="worker agent" />
-    <option name="LAST_COMMIT_MESSAGE" value="worker agent" />
+    <MESSAGE value="Début de la génération de partie + ajout d'un id au worker" />
+    <option name="LAST_COMMIT_MESSAGE" value="Début de la génération de partie + ajout d'un id au worker" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -918,19 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SupervisorVision.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#240#241#0" expanded="true" />
-            <element signature="e#291#292#0" expanded="true" />
-            <element signature="e#325#326#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Supervisor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -990,6 +982,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/WorkerAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="40" lean-forward="false" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1023,10 +1023,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/SupervisorVision.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="40" lean-forward="false" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#212#213#0" expanded="true" />
+            <element signature="e#240#241#0" expanded="true" />
+            <element signature="e#291#292#0" expanded="true" />
+            <element signature="e#325#326#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Map.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
-          <caret line="28" column="29" lean-forward="false" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+          <caret line="28" column="28" lean-forward="false" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#148#149#0" expanded="true" />
@@ -1038,14 +1052,6 @@
             <element signature="e#383#384#0" expanded="true" />
             <element signature="e#411#412#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/WorkerAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="40" lean-forward="false" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>

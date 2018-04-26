@@ -16,6 +16,13 @@ public class SupervisorVision implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
+        Map map;
+        if(arg instanceof Map) {
+            map = (Map) arg;
+            this.tiles = map.getTiles();
+        }
+        else {
+            System.err.println("Illegal argument in SupervisorVision.update function");
+        }
     }
 }
