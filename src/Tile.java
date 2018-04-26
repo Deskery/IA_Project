@@ -1,24 +1,20 @@
+import java.util.ArrayList;
+
 public class Tile {
-    private Location location;
+    private int idTile;
     private EnvironmentType environmentType;
     private EnvironmentCharacteristics environmentCharacteristics;
     private Resource resource;
     private boolean amenagement;
+    private ArrayList<Tile> neighbours;
 
-    public Tile(Location location, EnvironmentType environmentType, EnvironmentCharacteristics environmentCharacteristics, Resource resource, boolean amenagement) {
-        this.location = location;
+    public Tile(int idTile, EnvironmentType environmentType, EnvironmentCharacteristics environmentCharacteristics, Resource resource, boolean amenagement) {
+        this.idTile = idTile;
         this.environmentType = environmentType;
         this.environmentCharacteristics = environmentCharacteristics;
         this.resource = resource;
         this.amenagement = amenagement;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
+        this.neighbours = new ArrayList<>();
     }
 
     public EnvironmentType getEnvironmentType() {
@@ -51,5 +47,25 @@ public class Tile {
 
     public void setAmenagement(boolean amenagement) {
         this.amenagement = amenagement;
+    }
+
+    public int getIdTile() {
+        return idTile;
+    }
+
+    public void setIdTile(int idTile) {
+        this.idTile = idTile;
+    }
+
+    public ArrayList<Tile> getNeighbours() {
+        return neighbours;
+    }
+
+    public void setNeighbours(ArrayList<Tile> neighbours) {
+        this.neighbours = neighbours;
+    }
+
+    public void addNeighbour(Tile neighbour) {
+        this.neighbours.add(neighbour);
     }
 }
