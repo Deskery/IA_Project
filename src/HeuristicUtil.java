@@ -8,8 +8,8 @@ public class HeuristicUtil {
         return 0;
     }
 
-    public static int WorkerHeuristic(float[][] distanceMatrix, int workerId, ArrayList<TileHeuristic> tileList)
+    public static void WorkerHeuristic(float[][] distanceMatrix, int workerId, ArrayList<TileHeuristic> tileList)
     {
-        return 0;
+
     }
 }
