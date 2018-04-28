@@ -9,6 +9,13 @@ public class TileHeuristic implements Comparable{
         this.heuristicValue = heuristicValue;
     }
 
+    public int getTileId() {
+        return tileId;
+    }
+
+    public int getHeuristicValue() {
+        return heuristicValue;
+    }
 
     @Override
     public int compareTo(Object o) {
