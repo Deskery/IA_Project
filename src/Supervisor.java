@@ -48,8 +48,12 @@ public class Supervisor {
             heuristicTiles.add(new TileHeuristic(1,HeuristicUtil.CheckTileHeuristic(t)));
         }
         Collections.sort(heuristicTiles);
-        HashMap<WorkerAgent,ArrayList<TileHeuristic>> workerHeuristicList = new HashMap<WorkerAgent,ArrayList<TileHeuristic>>();
         int nbAgent = workers.size() + suppTiles;
+        reduceTileListe(nbAgent,heuristicTiles);
+
+
+        HashMap<WorkerAgent,ArrayList<TileHeuristic>> workerHeuristicList = new HashMap<WorkerAgent,ArrayList<TileHeuristic>>();
+
         for(WorkerAgent w : this.workers)
         {
             ArrayList<TileHeuristic> wTiles = new ArrayList<>(heuristicTiles);
@@ -57,6 +61,17 @@ public class Supervisor {
             workerHeuristicList.putIfAbsent(w,wTiles);
         }
 
+        MinMax search = new MinMax(workerHeuristicList,this.workers);
+        finalList = search.finalDecision();
+    }
 
+    private ArrayList<TileHeuristic> reduceTileListe (int size,ArrayList<TileHeuristic> oldList)
+    {
+        ArrayList<TileHeuristic> newList = new ArrayList<>();
+        for(int i = 0; i<size; i++)
+        {
+            newList.add(oldList.remove(0));
+        }
+        return  newList;
     }
 }

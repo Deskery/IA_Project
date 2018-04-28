@@ -74,7 +74,7 @@ public class MinMax {
         return MinMaxValue(problem,w);
     }
 
-    private HashMap<WorkerAgent,Integer> finalDecision()
+    public HashMap<WorkerAgent,Integer> finalDecision()
     {
 
 
