@@ -49,7 +49,7 @@ public class Supervisor {
         }
         Collections.sort(heuristicTiles);
         int nbAgent = workers.size() + suppTiles;
-        reduceTileListe(nbAgent,heuristicTiles);
+        reduceTileList(nbAgent,heuristicTiles);
 
 
         HashMap<WorkerAgent,ArrayList<TileHeuristic>> workerHeuristicList = new HashMap<WorkerAgent,ArrayList<TileHeuristic>>();
@@ -65,7 +65,7 @@ public class Supervisor {
         finalList = search.finalDecision();
     }
 
-    private ArrayList<TileHeuristic> reduceTileListe (int size,ArrayList<TileHeuristic> oldList)
+    private ArrayList<TileHeuristic> reduceTileList (int size,ArrayList<TileHeuristic> oldList)
     {
         ArrayList<TileHeuristic> newList = new ArrayList<>();
         for(int i = 0; i<size; i++)
