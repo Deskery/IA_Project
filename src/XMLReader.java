@@ -196,6 +196,7 @@ public class XMLReader {
                 if (node.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
                     Element element = (Element) node;
                     id = Integer.valueOf(element.getElementsByTagName("Id").item(0).getTextContent().trim());
+                    players.add(new Player(id));
                 }
             }
 
