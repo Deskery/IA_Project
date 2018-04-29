@@ -63,6 +63,7 @@ public class Supervisor {
 
         MinMax search = new MinMax(workerHeuristicList,this.workers);
         finalList = search.finalDecision();
+        this.giveOrders();
     }
 
     private ArrayList<TileHeuristic> reduceTileList (int size,ArrayList<TileHeuristic> oldList)
@@ -73,5 +74,27 @@ public class Supervisor {
             newList.add(oldList.remove(0));
         }
         return  newList;
+    }
+
+    private void giveOrders()
+    {
+        ArrayList<WorkerAgent> workers = this.workers;
+        while (!finalList.isEmpty())
+        {
+            WorkerAgent w = workers.remove(0);
+            int tileId = finalList.remove(w);
+            w.setGoalTile(tileId);
+
+            if(w.getCurrentTile() != tileId)
+            {
+                w.setState(WorkerState.Moving);
+                System.out.println("L'agent " + w.getIdWorker() +" doit aller construire a la tuile " +tileId+ " il est a " +w.getCurrentTile());
+            }
+            else
+            {
+                w.setState(WorkerState.Building);
+                System.out.println("L'agent " + w.getIdWorker() +" est sur la tuile " +tileId+ " il doit construire sur " +tileId);
+            }
+        }
     }
 }
