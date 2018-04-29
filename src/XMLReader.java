@@ -27,6 +27,8 @@ public class XMLReader {
             EnvironmentCharacteristics environmentCharacteristics;
             Resource resource;
             boolean amenagement;
+            Location location;
+            NodeList neighbors;
 
             NodeList casesList = document.getElementsByTagName("Tile");
             for (int i = 0; i < casesList.getLength(); i++) {
@@ -40,7 +42,29 @@ public class XMLReader {
                     resource = getResourceFromElement(element);
                     amenagement = hasAnAmenagement(element);
 
+                    Tile tile = new Tile(id, environmentType, environmentCharacteristics, resource, amenagement);
+
                     map.addCase(id, environmentType, environmentCharacteristics, resource, amenagement);
+                }
+            }
+
+            // Pour toutes les tuiles
+            for (int i = 0; i < casesList.getLength(); i++) {
+                org.w3c.dom.Node node = casesList.item(i);
+
+                if (node.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    int idTuile = getIDFromElement(element);
+
+                    neighbors = ((Element) node).getElementsByTagName("Neighbor");
+
+                    // On ajoute tous les voisins d'une tuile
+                    for(int j = 0; j < neighbors.getLength() ; j++) {
+                        org.w3c.dom.Node neighbor = neighbors.item(j);
+                        int idN;
+                        idN = Integer.valueOf(neighbors.item(j).getTextContent().trim());
+                        map.getTileById(idTuile).addNeighbour(map.getTileById(idN));
+                    }
                 }
             }
 
@@ -51,8 +75,14 @@ public class XMLReader {
         return map;
     }
 
+    private static Location getLocationFromElement(Element element) {
+        int x = Integer.valueOf(element.getElementsByTagName("LocationX").item(0).getTextContent().trim());
+        int y = Integer.valueOf(element.getElementsByTagName("LocationY").item(0).getTextContent().trim());
+        return new Location(x, y);
+    }
+
     private static int getIDFromElement(Element element) {
-        return Integer.valueOf(element.getElementsByTagName("id").item(0).getTextContent().trim());
+        return Integer.valueOf(element.getElementsByTagName("Id").item(0).getTextContent().trim());
     }
 
     private static boolean hasAnAmenagement(Element element) {
@@ -159,13 +189,13 @@ public class XMLReader {
             // Load the list of Cases
             int id;
 
-            NodeList playerList = document.getElementsByTagName("player");
+            NodeList playerList = document.getElementsByTagName("Player");
             for (int i = 0; i < playerList.getLength(); i++) {
                 org.w3c.dom.Node node = playerList.item(i);
 
                 if (node.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
                     Element element = (Element) node;
-                    id = Integer.valueOf(element.getElementsByTagName("id").item(0).getTextContent().trim());
+                    id = Integer.valueOf(element.getElementsByTagName("Id").item(0).getTextContent().trim());
                 }
             }
 
@@ -188,17 +218,17 @@ public class XMLReader {
             // Load the list of Agents
             int idP, idWorker, idTile;
 
-            NodeList workerList = document.getElementsByTagName("worker");
+            NodeList workerList = document.getElementsByTagName("Worker");
             for (int i = 0; i < workerList.getLength(); i++) {
                 org.w3c.dom.Node node = workerList.item(i);
 
                 if (node.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
                     Element element = (Element) node;
-                    idP = Integer.valueOf(element.getElementsByTagName("idPlayer").item(0).getTextContent().trim());
+                    idP = Integer.valueOf(element.getElementsByTagName("IdPlayer").item(0).getTextContent().trim());
 
                     if(idP == idPlayer){
-                        idWorker = Integer.valueOf(element.getElementsByTagName("id").item(0).getTextContent().trim());
-                        idTile = Integer.valueOf(element.getElementsByTagName("idTile").item(0).getTextContent().trim());
+                        idWorker = Integer.valueOf(element.getElementsByTagName("Id").item(0).getTextContent().trim());
+                        idTile = Integer.valueOf(element.getElementsByTagName("IdTile").item(0).getTextContent().trim());
                         workerAgents.add(new WorkerAgent(idWorker, idTile));
                     }
                 }

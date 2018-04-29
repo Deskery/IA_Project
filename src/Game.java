@@ -49,7 +49,15 @@ public class Game {
 
     public void setupGame(String mapPath, String playerPath, String workerPath) {
         this.map = XMLReader.generateMap(mapPath);
-        float distanceMatrix[][] = AStar.generateDistanceMatrix(map.getTiles());
+        FloydWarshall fwAlgorithm = new FloydWarshall(this.map.getTiles().size());
+
+        for (Tile start : this.map.getTiles()) {
+            for(Tile end: start.getNeighbours()) {
+                fwAlgorithm.addEdge(start.getIdTile(), end.getIdTile(), 1);
+            }
+        }
+
+        double distanceMatrix[][] = fwAlgorithm.floydWarshall();
 
         this.players = XMLReader.generatePlayers(playerPath);
 

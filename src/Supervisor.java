@@ -5,10 +5,10 @@ import java.util.HashMap;
 public class Supervisor {
     private ArrayList<WorkerAgent> workers;
     private SupervisorVision vision;
-    private float[][] distanceMatrix;
+    private double[][] distanceMatrix;
     private HashMap<WorkerAgent,Integer> finalList ;
     private int suppTiles;
-    public Supervisor(ArrayList<WorkerAgent> workers, float[][] distanceMatrix) {
+    public Supervisor(ArrayList<WorkerAgent> workers, double[][] distanceMatrix) {
         this.vision = new SupervisorVision();
         this.distanceMatrix = distanceMatrix;
         this.workers = workers;
@@ -31,11 +31,11 @@ public class Supervisor {
         this.vision = vision;
     }
 
-    public float[][] getDistanceMatrix() {
+    public double[][] getDistanceMatrix() {
         return distanceMatrix;
     }
 
-    public void setDistanceMatrix(float[][] distanceMatrix) {
+    public void setDistanceMatrix(double[][] distanceMatrix) {
         this.distanceMatrix = distanceMatrix;
     }
 

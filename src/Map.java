@@ -28,4 +28,15 @@ public class Map extends Observable{
         setChanged();
         notifyObservers(this);
     }
+
+    public Tile getTileById(int idN) {
+        for(Tile t : tiles) {
+            if(t.getIdTile() == idN) {
+                return t;
+            }
+
+        }
+
+        return null;
+    }
 }

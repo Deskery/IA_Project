@@ -66,6 +66,7 @@ public class Tile {
     }
 
     public void addNeighbour(Tile neighbour) {
-        this.neighbours.add(neighbour);
+        if(neighbour != null)
+            this.neighbours.add(neighbour);
     }
 }

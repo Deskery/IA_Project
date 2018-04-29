@@ -117,9 +117,9 @@ public class HeuristicUtil {
         }
         return heurValue;
     }
-    public static void WorkerHeuristic(float[][] distanceMatrix, int workerId, ArrayList<TileHeuristic> tileList)
+    public static void WorkerHeuristic(double[][] distanceMatrix, int workerId, ArrayList<TileHeuristic> tileList)
     {
-        float distance = 0;
+        double distance = 0;
         int newHeur;
         for(TileHeuristic tile : tileList)
         {

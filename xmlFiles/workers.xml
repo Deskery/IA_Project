@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Workers>
+	<Worker>
+		<Id>0</Id>
+		<IdPlayer>0</IdPlayer>
+		<IdTile>1</IdTile>
+	</Worker>
+	
+	<Worker>
+		<Id>1</Id>
+		<IdPlayer>0</IdPlayer>
+		<IdTile>3</IdTile>
+	</Worker>
+</Workers>

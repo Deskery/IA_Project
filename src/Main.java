@@ -6,6 +6,6 @@ public class Main {
 
         Game game = new Game();
         game.setupGame(mapPath, playerPath, workerPath);
-        game.start();
+        //game.start();
     }
 }
