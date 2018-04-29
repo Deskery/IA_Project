@@ -68,11 +68,6 @@ public class MinMax {
         return new TileHeuristic(0,0);
     }
 
-    private TileHeuristic MinMaxDecision(ArrayList<WorkerAgent> w)
-    {
-
-        return MinMaxValue(problem,w);
-    }
 
     public HashMap<WorkerAgent,Integer> finalDecision()
     {
@@ -81,7 +76,7 @@ public class MinMax {
         ArrayList<WorkerAgent> workers = agents;
         while(workers.size() != 0)
         {
-            TileHeuristic tile = MinMaxDecision(workers);
+            TileHeuristic tile = MinMaxValue(problem, workers);
             WorkerAgent worker = workers.remove(0);
             solution.putIfAbsent(worker, tile.getTileId());
 
