@@ -70,6 +70,7 @@ public class Game {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+
             }
         }
     }
