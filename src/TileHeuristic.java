@@ -3,6 +3,10 @@ public class TileHeuristic implements Comparable{
     private int tileId;
     private int heuristicValue;
 
+    public void setHeuristicValue(int heuristicValue) {
+        this.heuristicValue = heuristicValue;
+    }
+
     public TileHeuristic(int tileId, int heuristicValue) {
 
         this.tileId = tileId;
