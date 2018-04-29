@@ -51,7 +51,7 @@ public class MinMax {
                 value = Max(value,tileH);
             }
         }
-        else
+        else // si jamais agent ennemi cette partie du code n'est pas fonctionnelle et sert de template pour montrer a quoi ressemblerait l'algorithme si l'on prenait en compte les adversaires
         {
             for (TileHeuristic tileH : actions)
             {
@@ -68,11 +68,6 @@ public class MinMax {
         return new TileHeuristic(0,0);
     }
 
-    private TileHeuristic MinMaxDecision(ArrayList<WorkerAgent> w)
-    {
-
-        return MinMaxValue(problem,w);
-    }
 
     public HashMap<WorkerAgent,Integer> finalDecision()
     {
@@ -81,7 +76,7 @@ public class MinMax {
         ArrayList<WorkerAgent> workers = agents;
         while(workers.size() != 0)
         {
-            TileHeuristic tile = MinMaxDecision(workers);
+            TileHeuristic tile = MinMaxValue(problem, workers);
             WorkerAgent worker = workers.remove(0);
             solution.putIfAbsent(worker, tile.getTileId());
 
