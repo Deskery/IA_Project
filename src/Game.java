@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class Game {
     private Map map;
@@ -41,6 +42,9 @@ public class Game {
 
     public void nextIteration() {
         map.nextIteration();
+        for(Player p : players) {
+            p.getWorkerSupervisor().generateList();
+        }
     }
 
     public void setupGame(String mapPath, String playerPath, String workerPath) {
@@ -56,6 +60,17 @@ public class Game {
 
             // On ajoute le senseur vision du superviseur en temps qu'observeur de la map
             map.addObserver(player.getWorkerSupervisor().getVision());
+        }
+    }
+
+    public void start(){
+        while (true) {
+            nextIteration();
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

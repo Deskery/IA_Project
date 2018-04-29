@@ -21,4 +21,5 @@ public class Player {
     public void setWorkerSupervisor(Supervisor workerSupervisor) {
         this.workerSupervisor = workerSupervisor;
     }
+
 }
