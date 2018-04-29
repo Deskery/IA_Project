@@ -6,6 +6,7 @@ public class WorkerAgent {
     private IWorkerActions actionsUtil;
 
     public WorkerAgent(int idWorker, int currentTile) {
+        this.idWorker = idWorker;
         this.state = WorkerState.Idle;
         this.currentTile = currentTile;
         this.goalTile = -1;             // -1 = pas de but

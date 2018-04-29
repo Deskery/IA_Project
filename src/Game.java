@@ -61,12 +61,9 @@ public class Game {
 
         this.players = XMLReader.generatePlayers(playerPath);
 
-        for(Player p: players) {
-            System.out.println(p.getIdPlayer());
-        }
-
         for (Player player : this.players) {
             ArrayList<WorkerAgent> workers = XMLReader.generateWorker(player.getIdPlayer(), workerPath);
+
             Supervisor supervisor = new Supervisor(workers, distanceMatrix);
             player.setWorkerSupervisor(supervisor);
 
