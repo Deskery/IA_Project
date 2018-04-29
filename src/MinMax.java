@@ -51,7 +51,7 @@ public class MinMax {
                 value = Max(value,tileH);
             }
         }
-        else
+        else // si jamais agent ennemi cette partie du code n'est pas fonctionnelle et sert de template pour montrer a quoi ressemblerait l'algorithme si l'on prenait en compte les adversaires
         {
             for (TileHeuristic tileH : actions)
             {
