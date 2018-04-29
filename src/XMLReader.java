@@ -22,7 +22,7 @@ public class XMLReader {
             Document document = documentBuilder.parse(xmlFileData);
 
             // Load the list of Cases
-            Location location;
+            int id;
             EnvironmentType environmentType;
             EnvironmentCharacteristics environmentCharacteristics;
             Resource resource;
@@ -34,13 +34,13 @@ public class XMLReader {
 
                 if (node.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
                     Element element = (Element) node;
-                    location = getCaseLocationFromElement(element);
+                    id = getIDFromElement(element);
                     environmentType = getETFromElement(element);
                     environmentCharacteristics = getECFromElement(element);
                     resource = getResourceFromElement(element);
                     amenagement = hasAnAmenagement(element);
 
-                    map.addCase(location, environmentType, environmentCharacteristics, resource, amenagement);
+                    map.addCase(id, environmentType, environmentCharacteristics, resource, amenagement);
                 }
             }
 
@@ -49,6 +49,10 @@ public class XMLReader {
         }
 
         return map;
+    }
+
+    private static int getIDFromElement(Element element) {
+        return Integer.valueOf(element.getElementsByTagName("id").item(0).getTextContent().trim());
     }
 
     private static boolean hasAnAmenagement(Element element) {
@@ -142,17 +146,68 @@ public class XMLReader {
         return environmentType;
     }
 
-    private static Location getCaseLocationFromElement(Element element) {
-        float locationX = Float.valueOf(element.getElementsByTagName("LocationX").item(0).getTextContent().trim());
-        float locationY = Float.valueOf(element.getElementsByTagName("LocationY").item(0).getTextContent().trim());
-        return new Location(locationX, locationY);
-    }
+    public static ArrayList<Player> generatePlayers(String filePath) {
+        ArrayList<Player> players = new ArrayList<>();
 
-    public static ArrayList<Player> generatePlayers(String playerPath) {
-        return new ArrayList<Player>();
+        try {
+
+            File xmlFileData = new File(filePath);
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(xmlFileData);
+
+            // Load the list of Cases
+            int id;
+
+            NodeList playerList = document.getElementsByTagName("player");
+            for (int i = 0; i < playerList.getLength(); i++) {
+                org.w3c.dom.Node node = playerList.item(i);
+
+                if (node.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    id = Integer.valueOf(element.getElementsByTagName("id").item(0).getTextContent().trim());
+                }
+            }
+
+        } catch (ParserConfigurationException | IOException | SAXException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        return players;
     }
 
     public static ArrayList<WorkerAgent> generateWorker(int idPlayer, String workerPath) {
-        return new ArrayList<WorkerAgent>();
+        ArrayList<WorkerAgent> workerAgents = new ArrayList<>();
+        try {
+
+            File xmlFileData = new File(workerPath);
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document document = documentBuilder.parse(xmlFileData);
+
+            // Load the list of Agents
+            int idP, idWorker, idTile;
+
+            NodeList workerList = document.getElementsByTagName("worker");
+            for (int i = 0; i < workerList.getLength(); i++) {
+                org.w3c.dom.Node node = workerList.item(i);
+
+                if (node.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    idP = Integer.valueOf(element.getElementsByTagName("idPlayer").item(0).getTextContent().trim());
+
+                    if(idP == idPlayer){
+                        idWorker = Integer.valueOf(element.getElementsByTagName("id").item(0).getTextContent().trim());
+                        idTile = Integer.valueOf(element.getElementsByTagName("idTile").item(0).getTextContent().trim());
+                        workerAgents.add(new WorkerAgent(idWorker, idTile));
+                    }
+                }
+            }
+
+        } catch (ParserConfigurationException | IOException | SAXException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        return workerAgents;
     }
 }

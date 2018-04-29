@@ -20,8 +20,8 @@ public class Map extends Observable{
         tiles.add(c);
     }
 
-    public void addCase(Location location, EnvironmentType et, EnvironmentCharacteristics ec, Resource resource, boolean amenagement) {
-        tiles.add(new Tile(location, et, ec, resource, amenagement));
+    public void addCase(int id, EnvironmentType et, EnvironmentCharacteristics ec, Resource resource, boolean amenagement) {
+        tiles.add(new Tile(id, et, ec, resource, amenagement));
     }
 
     public void nextIteration() {

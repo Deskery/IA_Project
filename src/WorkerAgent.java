@@ -12,6 +12,14 @@ public class WorkerAgent {
         this.actionsUtil = new WorkerAction();
     }
 
+    public void setIdWorker(int idWorker) {
+        this.idWorker = idWorker;
+    }
+
+    public int getIdWorker() {
+        return idWorker;
+    }
+
     public WorkerState getState() {
         return state;
     }
