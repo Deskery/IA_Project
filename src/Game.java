@@ -42,6 +42,7 @@ public class Game {
 
     public void nextIteration() {
         map.nextIteration();
+
         for(Player p : players) {
             p.getWorkerSupervisor().generateList();
         }
@@ -75,6 +76,8 @@ public class Game {
     public void start(){
         while (true) {
             nextIteration();
+            nbRound++;
+            System.out.println("Round : " + nbRound);
             try {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
