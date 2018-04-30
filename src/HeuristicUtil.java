@@ -13,7 +13,7 @@ public class HeuristicUtil {
 
         heurValue = addVars(testCharacteristics(tile.getEnvironmentCharacteristics()),testType(tile.getEnvironmentType()),testRessources(tile.getResource()));
         if(tile.isAmenagement())
-            heurValue = -500;
+            heurValue = -1000;
 
         return heurValue;
     }
