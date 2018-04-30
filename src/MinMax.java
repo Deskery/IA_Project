@@ -16,8 +16,10 @@ public class MinMax {
 
     private TileHeuristic Max(TileHeuristic t1 , TileHeuristic t2)
     {
+
         if(t1.getHeuristicValue() < t2.getHeuristicValue())
         {
+            System.out.println("t2 " +t2.getHeuristicValue() + " > t1 " +t1.getHeuristicValue());
             return t2;
         }
         else
@@ -36,10 +38,11 @@ public class MinMax {
 
     private TileHeuristic MinMaxValue(HashMap<WorkerAgent,ArrayList<TileHeuristic>> remainingMap, ArrayList<WorkerAgent> workerAgents,TileHeuristic util)
     {
+        TileHeuristic action;
         ArrayList<WorkerAgent> agentList = new ArrayList<>(workerAgents);
         if(remainingMap.size() == 0)
             return util;
-        TileHeuristic value = new TileHeuristic(-1, - 2000);
+        TileHeuristic value = new TileHeuristic(-1, -2000);
         /*
         recuperer le premier agent de la liste envoyé en parametre et son array list de tuiles
         ensuite regarder toutes les tuiles associées et récuperer la tuile avec l'index le plus haut
@@ -50,13 +53,30 @@ public class MinMax {
         {
             for (TileHeuristic tileH : actions)
             {
+
                 for (WorkerAgent w : agentList)
                 {
                     ArrayList<TileHeuristic> workerTiles = new ArrayList<>(newMap.remove(w));
                     workerTiles.remove(tileH);
                     newMap.putIfAbsent(w, workerTiles);
                 }
-                value = Max(value,MinMaxValue(newMap,agentList,tileH));
+
+                if(util == null) // systeme utilisé pour remplacer le systeme de noeuds et retenir la tuile menant a l'arbre optimal
+                {
+                    int a,b;
+                    a = value.getHeuristicValue();
+                    value = Max(value,MinMaxValue(newMap,agentList,tileH));
+                    b = value.getHeuristicValue();
+                    if ( a== -2000 || b!= a) // implique la variable valeur non setté ou que l'arbre exploré a renvoyé une meilleur valeur pour valeur
+                    {
+                        util = tileH;
+                    }
+                }
+                else
+                    value = Max(value,MinMaxValue(newMap,agentList,tileH));
+
+
+
             }
         }
         else // si jamais agent ennemi cette partie du code n'est pas fonctionnelle et sert de template pour montrer a quoi ressemblerait l'algorithme si l'on prenait en compte les adversaires
@@ -66,14 +86,28 @@ public class MinMax {
 
                 for (WorkerAgent w : agentList)
                 {
-                    ArrayList<TileHeuristic> workerTiles = newMap.remove(w);
+                    ArrayList<TileHeuristic> workerTiles = new ArrayList<>(newMap.remove(w));
                     workerTiles.remove(tileH);
                     newMap.putIfAbsent(w, workerTiles);
                 }
+
+                if(util == null) // systeme utilisé pour remplacer le systeme de noeuds et retenir la tuile menant a l'arbre optimal
+                {
+                    int a,b;
+                    a = value.getHeuristicValue();
+                    value = Min(value,MinMaxValue(newMap,agentList,tileH));
+                    b = value.getHeuristicValue();
+                    if ( a== -2000 || b!= a) // implique la variable valeur non setté ou que l'arbre exploré a renvoyé une meilleur valeur pour valeur
+                    {
+                        util = tileH;
+                    }
+                }
+                else
+                    value = Min(value,MinMaxValue(newMap,agentList,tileH));
                 value = Min(value,MinMaxValue(newMap,agentList,tileH));
             }
         }
-        return value;
+        return util;
     }
 
 

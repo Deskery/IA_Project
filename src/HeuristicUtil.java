@@ -127,7 +127,7 @@ public class HeuristicUtil {
             if (distance != 0)
                 newHeur = tile.getHeuristicValue() - (int)distance*2;
             else
-                newHeur =tile.getHeuristicValue() + 50;
+                newHeur =tile.getHeuristicValue() + 200;
             tile.setHeuristicValue(newHeur);
         }
 
