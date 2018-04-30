@@ -63,7 +63,7 @@ public class Supervisor {
 
         MinMax search = new MinMax(workerHeuristicList, this.workers);
         finalList = search.finalDecision();
-        this.giveOrders();
+        this.giveOrders(tiles);
     }
 
     private ArrayList<TileHeuristic> reduceTileList (int size,ArrayList<TileHeuristic> oldList)
@@ -76,7 +76,7 @@ public class Supervisor {
         return  newList;
     }
 
-    private void giveOrders()
+    private void giveOrders(ArrayList<Tile> tiles)
     {
         ArrayList<WorkerAgent> workers = new ArrayList<>(this.workers);
         while (!finalList.isEmpty())
@@ -90,8 +90,19 @@ public class Supervisor {
             WorkerAgent w = workers.remove(0);
             int tileId = finalList.remove(w);
             w.setGoalTile(tileId);
+            boolean isBuilt= false;
+            for (Tile t: tiles)
+            {
+                if(t.getIdTile()==tileId && t.isAmenagement())
+                    isBuilt = true;
+            }
 
-            if(w.getCurrentTile() != tileId)
+            if(isBuilt == true)
+            {
+                w.setState(WorkerState.Idle);
+                System.out.println("L'agent " + w.getIdWorker() +" n'a pas trouvé de case interessante il se met au repos");
+            }
+            else if(w.getCurrentTile() != tileId && isBuilt == false)
             {
                 w.setState(WorkerState.Moving);
                 System.out.println("L'agent " + w.getIdWorker() +" doit aller construire a la tuile " +tileId+ " il est a " +w.getCurrentTile());
