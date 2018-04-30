@@ -42,7 +42,7 @@ public class Supervisor {
     public void generateList()
     {
         ArrayList<Tile> tiles = vision.getTiles();
-        ArrayList<TileHeuristic> heuristicTiles = new ArrayList<TileHeuristic>();
+        ArrayList<TileHeuristic> heuristicTiles = new ArrayList<>();
         for( Tile t : tiles)
         {
             heuristicTiles.add(new TileHeuristic(t.getIdTile(),HeuristicUtil.CheckTileHeuristic(t)));
@@ -61,7 +61,7 @@ public class Supervisor {
             workerHeuristicList.putIfAbsent(w,wTiles);
         }
 
-        MinMax search = new MinMax(workerHeuristicList,this.workers);
+        MinMax search = new MinMax(workerHeuristicList, this.workers);
         finalList = search.finalDecision();
         this.giveOrders();
     }
@@ -78,9 +78,15 @@ public class Supervisor {
 
     private void giveOrders()
     {
-        ArrayList<WorkerAgent> workers = this.workers;
+        ArrayList<WorkerAgent> workers = new ArrayList<>(this.workers);
         while (!finalList.isEmpty())
         {
+            for(WorkerAgent w : workers){
+                System.out.println(w.getIdWorker());
+                System.out.println(w.getState());
+                System.out.println(w.getGoalTile());
+                System.out.println(w.getCurrentTile());
+            }
             WorkerAgent w = workers.remove(0);
             int tileId = finalList.remove(w);
             w.setGoalTile(tileId);
