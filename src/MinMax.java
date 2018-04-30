@@ -34,38 +34,46 @@ public class MinMax {
             return t1;
     }
 
-    private TileHeuristic MinMaxValue(HashMap<WorkerAgent,ArrayList<TileHeuristic>> remainingMap, ArrayList<WorkerAgent> workerAgents)
+    private TileHeuristic MinMaxValue(HashMap<WorkerAgent,ArrayList<TileHeuristic>> remainingMap, ArrayList<WorkerAgent> workerAgents,TileHeuristic util)
     {
+        ArrayList<WorkerAgent> agentList = new ArrayList<>(workerAgents);
         if(remainingMap.size() == 0)
-            return new TileHeuristic(0,0);
-        TileHeuristic value = new TileHeuristic(0, - 2000);
+            return util;
+        TileHeuristic value = new TileHeuristic(-1, - 2000);
         /*
         recuperer le premier agent de la liste envoyé en parametre et son array list de tuiles
         ensuite regarder toutes les tuiles associées et récuperer la tuile avec l'index le plus haut
          */
-        ArrayList<TileHeuristic> actions =  remainingMap.remove(workerAgents.remove(0));
+        HashMap<WorkerAgent,ArrayList<TileHeuristic>> newMap = new HashMap<>(remainingMap);
+        ArrayList<TileHeuristic> actions =  newMap.remove(agentList.remove(0));
         if(true) // regarder si c'est notre agent ou celui de l'adversaire pour prévoir les coups adverses
         {
             for (TileHeuristic tileH : actions)
             {
-                value = Max(value,tileH);
+                for (WorkerAgent w : agentList)
+                {
+                    ArrayList<TileHeuristic> workerTiles = newMap.remove(w);
+                    workerTiles.remove(tileH);
+                    newMap.putIfAbsent(w, workerTiles);
+                }
+                value = Max(value,MinMaxValue(newMap,agentList,tileH));
             }
         }
         else // si jamais agent ennemi cette partie du code n'est pas fonctionnelle et sert de template pour montrer a quoi ressemblerait l'algorithme si l'on prenait en compte les adversaires
         {
             for (TileHeuristic tileH : actions)
             {
-                HashMap<WorkerAgent,ArrayList<TileHeuristic>> newMap = remainingMap;
-                for (WorkerAgent w : workerAgents)
+
+                for (WorkerAgent w : agentList)
                 {
                     ArrayList<TileHeuristic> workerTiles = newMap.remove(w);
                     workerTiles.remove(tileH);
                     newMap.putIfAbsent(w, workerTiles);
                 }
-                value = Min(value,MinMaxValue(newMap,workerAgents));
+                value = Min(value,MinMaxValue(newMap,agentList,tileH));
             }
         }
-        return new TileHeuristic(0,0);
+        return value;
     }
 
 
@@ -73,10 +81,10 @@ public class MinMax {
     {
 
 
-        ArrayList<WorkerAgent> workers = agents;
+        ArrayList<WorkerAgent> workers = new ArrayList<>(agents);
         while(workers.size() != 0)
         {
-            TileHeuristic tile = MinMaxValue(problem, workers);
+            TileHeuristic tile = MinMaxValue(problem, workers,null);
             WorkerAgent worker = workers.remove(0);
             solution.putIfAbsent(worker, tile.getTileId());
 
@@ -86,6 +94,7 @@ public class MinMax {
                 workerTiles.remove(tile);
                 problem.putIfAbsent(w, workerTiles);
             }
+            problem.remove(worker);
         }
         //travailler a meme la liste d'agent et les retirer au fur et a mesure que l'on crée la solution
         return solution;

@@ -45,11 +45,11 @@ public class Supervisor {
         ArrayList<TileHeuristic> heuristicTiles = new ArrayList<TileHeuristic>();
         for( Tile t : tiles)
         {
-            heuristicTiles.add(new TileHeuristic(1,HeuristicUtil.CheckTileHeuristic(t)));
+            heuristicTiles.add(new TileHeuristic(t.getIdTile(),HeuristicUtil.CheckTileHeuristic(t)));
         }
         Collections.sort(heuristicTiles);
         int nbAgent = workers.size() + suppTiles;
-        reduceTileList(nbAgent,heuristicTiles);
+        heuristicTiles = reduceTileList(nbAgent,heuristicTiles);
 
 
         HashMap<WorkerAgent,ArrayList<TileHeuristic>> workerHeuristicList = new HashMap<WorkerAgent,ArrayList<TileHeuristic>>();
