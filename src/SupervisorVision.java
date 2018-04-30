@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+/*
+Classe permettant au superviseur d'observer la carte a chaque changement
 
+ */
 public class SupervisorVision implements Observer {
 
     private ArrayList<Tile> tiles;

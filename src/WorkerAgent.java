@@ -1,3 +1,8 @@
+/*
+CLasse définissant l'ouvrier
+ */
+
+
 public class WorkerAgent {
     private int idWorker;
     private WorkerState state;

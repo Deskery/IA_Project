@@ -1,5 +1,7 @@
 import java.util.ArrayList;
-
+/*
+Classe implementant la tuile de jeu
+ */
 public class Tile {
     private int idTile;
     private EnvironmentType environmentType;
@@ -20,27 +22,27 @@ public class Tile {
     public EnvironmentType getEnvironmentType() {
         return environmentType;
     }
-
+    /*
     public void setEnvironmentType(EnvironmentType environmentType) {
         this.environmentType = environmentType;
     }
-
+    */
     public EnvironmentCharacteristics getEnvironmentCharacteristics() {
         return environmentCharacteristics;
     }
-
+    /*
     public void setEnvironmentCharacteristics(EnvironmentCharacteristics environmentCharacteristics) {
         this.environmentCharacteristics = environmentCharacteristics;
     }
-
+    */
     public Resource getResource() {
         return resource;
     }
-
+    /*
     public void setResource(Resource resource) {
         this.resource = resource;
     }
-
+    */
     public boolean isAmenagement() {
         return amenagement;
     }
@@ -52,19 +54,20 @@ public class Tile {
     public int getIdTile() {
         return idTile;
     }
-
+    /*
     public void setIdTile(int idTile) {
         this.idTile = idTile;
     }
+    */
 
     public ArrayList<Tile> getNeighbours() {
         return neighbours;
     }
-
+    /*
     public void setNeighbours(ArrayList<Tile> neighbours) {
         this.neighbours = neighbours;
     }
-
+*/
     public void addNeighbour(Tile neighbour) {
         if(neighbour != null)
             this.neighbours.add(neighbour);

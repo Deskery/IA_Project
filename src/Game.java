@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+/*
+Classe gérant l'univers de jeu
+Initiliase la map les joueurs et les workers
+Comprend également la boucle de jeu et les commandes a executer
+ */
+
 
 public class Game {
     private Map map;
@@ -75,10 +81,11 @@ public class Game {
     }
 
     public void start(){
-        while (true) {
+        while (nbRound < 250) {
+            System.out.println("Round : " + nbRound);
             nextIteration();
             nbRound++;
-            System.out.println("Round : " + nbRound);
+
             try {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {

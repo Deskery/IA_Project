@@ -55,7 +55,7 @@ public class Supervisor {
         heuristicTiles = reduceTileList(nbAgent,heuristicTiles);
 
 
-        HashMap<WorkerAgent,ArrayList<TileHeuristic>> workerHeuristicList = new HashMap<WorkerAgent,ArrayList<TileHeuristic>>();
+        HashMap<WorkerAgent,ArrayList<TileHeuristic>> workerHeuristicList = new HashMap<>();
 
         for(WorkerAgent w : this.workers)
         {

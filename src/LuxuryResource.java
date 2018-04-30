@@ -1,3 +1,8 @@
+/*
+Definit la classe des ressources de luxe
+ */
+
+
 public class LuxuryResource implements Resource{
 
     private float quantity;

@@ -1,3 +1,9 @@
+/*
+CLasse principale
+Instancie le jeu et trouve les différents Xml a lire
+ */
+
+
 public class Main {
     public static void main (String args[]) {
         String mapPath = "xmlFiles\\map.xml";

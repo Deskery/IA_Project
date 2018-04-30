@@ -1,3 +1,7 @@
+/*
+Classe permettzant au worker d'agir
+ */
+
 public class WorkerAction implements IWorkerActions {
 
     @Override

@@ -1,8 +1,13 @@
 import java.util.Arrays;
+/*
+Classe servant au calcul des distances entre les cases du jeu
+Représente un algorithme d'exploration avancé
+Renvoie un tableau a deux entrées represenant les cordonnées de deux cases et la distance associé
 
+*/
 public class FloydWarshall {
 
-    // graph represented by an adjacency matrix
+    // graph representé par une matrix adjacente
     private double[][] graph;
 
     private boolean negativeCycle;
@@ -28,12 +33,12 @@ public class FloydWarshall {
         return this.negativeCycle;
     }
 
-    // utility function to add edges to the adjacencyList
+    // ajoute les cotés aux cases en leur affiliant un poids
     public void addEdge(int from, int to, double weight) {
         graph[from][to] = weight;
     }
 
-    // all-pairs shortest path
+    // les chemins les plus court par pair
     public double[][] floydWarshall() {
         double[][] distances;
         int n = this.graph.length;

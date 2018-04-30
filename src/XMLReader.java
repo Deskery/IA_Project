@@ -9,7 +9,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+/*
+Classe pour initialiser le jeu a partir de fichiers xml
 
+ */
 public class XMLReader {
     public static Map generateMap(String filePath) {
         Map map = new Map();
@@ -27,7 +30,6 @@ public class XMLReader {
             EnvironmentCharacteristics environmentCharacteristics;
             Resource resource;
             boolean amenagement;
-            Location location;
             NodeList neighbors;
 
             NodeList casesList = document.getElementsByTagName("Tile");
@@ -75,11 +77,7 @@ public class XMLReader {
         return map;
     }
 
-    private static Location getLocationFromElement(Element element) {
-        int x = Integer.valueOf(element.getElementsByTagName("LocationX").item(0).getTextContent().trim());
-        int y = Integer.valueOf(element.getElementsByTagName("LocationY").item(0).getTextContent().trim());
-        return new Location(x, y);
-    }
+
 
     private static int getIDFromElement(Element element) {
         return Integer.valueOf(element.getElementsByTagName("Id").item(0).getTextContent().trim());

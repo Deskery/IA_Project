@@ -1,4 +1,8 @@
+/*
+Interface rpresentant les actions faisable par un worker
+ */
+
 public interface IWorkerActions {
-    public void moveTo(WorkerAgent wa, Tile tile);
-    public void buildAmenagment(Tile tile);
+    void moveTo(WorkerAgent wa, Tile tile);
+    void buildAmenagment(Tile tile);
 }

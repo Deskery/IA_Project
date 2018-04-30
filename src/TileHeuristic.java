@@ -1,4 +1,10 @@
-import java.util.Collections;
+/*
+Classe representant une tuile mais servant dans le calcul d'heuristique objet plus simple a manipuler dans les
+algorithme et plus leger
+ */
+
+
+
 public class TileHeuristic implements Comparable{
     private int tileId;
     private int heuristicValue;

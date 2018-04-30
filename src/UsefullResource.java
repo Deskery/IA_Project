@@ -1,3 +1,8 @@
+/*
+Classe implementant la notion de resource utile
+ */
+
+
 public class UsefullResource implements Resource {
     private float quantity;
 

@@ -1,6 +1,11 @@
 import java.util.ArrayList;
 import java.util.Observable;
 
+/*
+Classe representant la carte et plus aprticulierement la carte du joueur
+ */
+
+
 public class Map extends Observable{
     private ArrayList<Tile> tiles;
 
@@ -11,7 +16,7 @@ public class Map extends Observable{
     public ArrayList<Tile> getTiles() {
         return tiles;
     }
-
+    /*
     public void setTiles(ArrayList<Tile> tiles) {
         this.tiles = tiles;
     }
@@ -19,7 +24,7 @@ public class Map extends Observable{
     public void addCase(Tile c) {
         tiles.add(c);
     }
-
+    */
     public void addCase(int id, EnvironmentType et, EnvironmentCharacteristics ec, Resource resource, boolean amenagement) {
         tiles.add(new Tile(id, et, ec, resource, amenagement));
     }

@@ -1,3 +1,6 @@
+/*
+Classe implementant les ressources spéciales
+ */
 public class SpecialResource implements Resource{
     private float quantity;
 
