@@ -45,14 +45,14 @@ public class MinMax {
         ensuite regarder toutes les tuiles associées et récuperer la tuile avec l'index le plus haut
          */
         HashMap<WorkerAgent,ArrayList<TileHeuristic>> newMap = new HashMap<>(remainingMap);
-        ArrayList<TileHeuristic> actions =  newMap.remove(agentList.remove(0));
+        ArrayList<TileHeuristic> actions =  new ArrayList<>(newMap.remove(agentList.remove(0)));
         if(true) // regarder si c'est notre agent ou celui de l'adversaire pour prévoir les coups adverses
         {
             for (TileHeuristic tileH : actions)
             {
                 for (WorkerAgent w : agentList)
                 {
-                    ArrayList<TileHeuristic> workerTiles = newMap.remove(w);
+                    ArrayList<TileHeuristic> workerTiles = new ArrayList<>(newMap.remove(w));
                     workerTiles.remove(tileH);
                     newMap.putIfAbsent(w, workerTiles);
                 }
