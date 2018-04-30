@@ -1,16 +1,14 @@
 public class WorkerAgent {
     private int idWorker;
     private WorkerState state;
-    private int currentTile;
-    private int goalTile; //-1 = no goal
-    private IWorkerActions actionsUtil;
+    private Tile currentTile;
+    private Tile goalTile; //null = no goal
 
-    public WorkerAgent(int idWorker, int currentTile) {
+    public WorkerAgent(int idWorker, Tile currentTile) {
         this.idWorker = idWorker;
         this.state = WorkerState.Idle;
         this.currentTile = currentTile;
-        this.goalTile = -1;             // -1 = pas de but
-        this.actionsUtil = new WorkerAction();
+        this.goalTile = null;             // -1 = pas de but
     }
 
     public void setIdWorker(int idWorker) {
@@ -29,19 +27,19 @@ public class WorkerAgent {
         this.state = state;
     }
 
-    public int getCurrentTile() {
+    public Tile getCurrentTile() {
         return currentTile;
     }
 
-    public void setCurrentTile(int currentTile) {
+    public void setCurrentTile(Tile currentTile) {
         this.currentTile = currentTile;
     }
 
-    public int getGoalTile() {
+    public Tile getGoalTile() {
         return goalTile;
     }
 
-    public void setGoalTile(int goalTile) {
+    public void setGoalTile(Tile goalTile) {
         this.goalTile = goalTile;
     }
 

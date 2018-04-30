@@ -25,4 +25,13 @@ public class SupervisorVision implements Observer {
             System.err.println("Illegal argument in SupervisorVision.update function");
         }
     }
+
+    public Tile getTileById(int idN) {
+        for(Tile t : tiles) {
+            if(t.getIdTile() == idN)
+                return t;
+        }
+
+        return null;
+    }
 }

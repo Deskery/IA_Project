@@ -44,7 +44,8 @@ public class Game {
         map.nextIteration();
 
         for(Player p : players) {
-            p.getWorkerSupervisor().generateList();
+            p.getWorkerSupervisor().generateList();     // Calcule les buts et les attribut aux workers
+            p.getWorkerSupervisor().executeOrder();     // Execute les ordres déterminés à l'étape précédante
         }
     }
 
@@ -63,7 +64,7 @@ public class Game {
         this.players = XMLReader.generatePlayers(playerPath);
 
         for (Player player : this.players) {
-            ArrayList<WorkerAgent> workers = XMLReader.generateWorker(player.getIdPlayer(), workerPath);
+            ArrayList<WorkerAgent> workers = XMLReader.generateWorker(player.getIdPlayer(), workerPath, this.map);
 
             Supervisor supervisor = new Supervisor(workers, distanceMatrix);
             player.setWorkerSupervisor(supervisor);

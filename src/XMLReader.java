@@ -207,7 +207,7 @@ public class XMLReader {
         return players;
     }
 
-    public static ArrayList<WorkerAgent> generateWorker(int idPlayer, String workerPath) {
+    public static ArrayList<WorkerAgent> generateWorker(int idPlayer, String workerPath, Map map) {
         ArrayList<WorkerAgent> workerAgents = new ArrayList<>();
         try {
 
@@ -230,7 +230,7 @@ public class XMLReader {
                     if(idP == idPlayer){
                         idWorker = Integer.valueOf(element.getElementsByTagName("Id").item(0).getTextContent().trim());
                         idTile = Integer.valueOf(element.getElementsByTagName("IdTile").item(0).getTextContent().trim());
-                        workerAgents.add(new WorkerAgent(idWorker, idTile));
+                        workerAgents.add(new WorkerAgent(idWorker, map.getTileById(idTile)));
                     }
                 }
             }

@@ -19,7 +19,7 @@ public class FloydWarshall {
                     graph[i][j] = 0;
                 } else {
                     graph[i][j] = Double.POSITIVE_INFINITY;
-                }
+            }
             }
         }
     }

@@ -8,11 +8,14 @@ public class Supervisor {
     private double[][] distanceMatrix;
     private HashMap<WorkerAgent,Integer> finalList ;
     private int suppTiles;
+    private WorkerAction action;
+
     public Supervisor(ArrayList<WorkerAgent> workers, double[][] distanceMatrix) {
         this.vision = new SupervisorVision();
         this.distanceMatrix = distanceMatrix;
         this.workers = workers;
         this.suppTiles = 2;
+        this.action = new WorkerAction();
     }
 
     public ArrayList<WorkerAgent> getWorkers() {
@@ -57,7 +60,7 @@ public class Supervisor {
         for(WorkerAgent w : this.workers)
         {
             ArrayList<TileHeuristic> wTiles = new ArrayList<>(heuristicTiles);
-            HeuristicUtil.WorkerHeuristic(this.distanceMatrix,w.getCurrentTile(),wTiles);
+            HeuristicUtil.WorkerHeuristic(this.distanceMatrix,w.getCurrentTile().getIdTile(),wTiles);
             workerHeuristicList.putIfAbsent(w,wTiles);
         }
 
@@ -81,15 +84,9 @@ public class Supervisor {
         ArrayList<WorkerAgent> workers = new ArrayList<>(this.workers);
         while (!finalList.isEmpty())
         {
-            for(WorkerAgent w : workers){
-                System.out.println(w.getIdWorker());
-                System.out.println(w.getState());
-                System.out.println(w.getGoalTile());
-                System.out.println(w.getCurrentTile());
-            }
             WorkerAgent w = workers.remove(0);
             int tileId = finalList.remove(w);
-            w.setGoalTile(tileId);
+            w.setGoalTile(vision.getTileById(tileId));
             boolean isBuilt= false;
             for (Tile t: tiles)
             {
@@ -97,15 +94,15 @@ public class Supervisor {
                     isBuilt = true;
             }
 
-            if(isBuilt == true)
+            if(isBuilt)
             {
                 w.setState(WorkerState.Idle);
                 System.out.println("L'agent " + w.getIdWorker() +" n'a pas trouvé de case interessante il se met au repos");
             }
-            else if(w.getCurrentTile() != tileId && isBuilt == false)
+            else if(w.getCurrentTile().getIdTile() != tileId)
             {
                 w.setState(WorkerState.Moving);
-                System.out.println("L'agent " + w.getIdWorker() +" doit aller construire a la tuile " +tileId+ " il est a " +w.getCurrentTile());
+                System.out.println("L'agent " + w.getIdWorker() +" doit aller construire a la tuile " +tileId+ " il est a " +w.getCurrentTile().getIdTile());
             }
             else
             {
@@ -113,5 +110,44 @@ public class Supervisor {
                 System.out.println("L'agent " + w.getIdWorker() +" est sur la tuile " +tileId+ " il doit construire sur " +tileId);
             }
         }
+    }
+
+    public void executeOrder(){
+        for(WorkerAgent w : this.workers) {
+
+            if(w.getState().equals(WorkerState.Building)) {
+                action.buildAmenagment(w.getCurrentTile());
+            }
+
+            if(w.getState().equals(WorkerState.Moving)) {
+
+                Tile currentTile = w.getCurrentTile();
+                Tile destinationTile = w.getGoalTile();
+
+                if(distanceMatrix[currentTile.getIdTile()][destinationTile.getIdTile()] <= 1) {
+                    action.moveTo(w, destinationTile);
+                }
+                else {
+                    Tile nextTile = findNextTile(currentTile, destinationTile);
+                    action.moveTo(w, nextTile);
+                }
+            }
+        }
+    }
+
+    private Tile findNextTile(Tile currentTile, Tile destinationTile) {
+        Tile nextTile = null;
+        double shortestDistance = Double.POSITIVE_INFINITY;
+        double tempDistance;
+
+        for(Tile neighbour : currentTile.getNeighbours()) {
+            tempDistance = distanceMatrix[neighbour.getIdTile()][destinationTile.getIdTile()];
+            if(tempDistance < shortestDistance) {
+                shortestDistance = tempDistance;
+                nextTile = neighbour;
+            }
+        }
+
+        return nextTile;
     }
 }
