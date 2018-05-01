@@ -147,7 +147,7 @@ public class HeuristicUtil {
         {
             distance = distanceMatrix[workerId][tile.getTileId()];
             if (distance != 0)
-                newHeur = tile.getHeuristicValue() - (int)distance*2;
+                newHeur = tile.getHeuristicValue() - (int)distance*10;
             else
                 newHeur =tile.getHeuristicValue() + 200;
             tile.setHeuristicValue(newHeur);

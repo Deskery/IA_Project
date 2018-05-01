@@ -59,7 +59,12 @@ public class Supervisor {
 
         for(WorkerAgent w : this.workers)
         {
-            ArrayList<TileHeuristic> wTiles = new ArrayList<>(heuristicTiles);
+            ArrayList<TileHeuristic> wTiles = new ArrayList<>();
+            for (TileHeuristic t: heuristicTiles)
+            {
+                TileHeuristic newTile = new TileHeuristic(t.getTileId(),t.getHeuristicValue());
+                wTiles.add(newTile);
+            }
             HeuristicUtil.WorkerHeuristic(this.distanceMatrix,w.getCurrentTile().getIdTile(),wTiles);
             workerHeuristicList.putIfAbsent(w,wTiles);
         }

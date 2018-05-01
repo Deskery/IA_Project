@@ -62,28 +62,20 @@ public class MinMax {
                     newMap.putIfAbsent(w, workerTiles);
                 }
 
-                if(util == null) // systeme utilisé pour remplacer le systeme de noeuds et retenir la tuile menant a l'arbre optimal
-                {
-                    int a,b;
-                    a = value.getHeuristicValue();
+                TileHeuristic minManTile = MinMaxValue(newMap, agentList, tileH);
 
-                    if(true) // regarder si c'est notre agent ou celui de l'adversaire pour prévoir les coups adverses
-                        // La liste d'agent serait alors une liste d'entité et il y aurait besoin de foncions d'heuristiques pour chque entité
-                        value = Max(value, MinMaxValue(newMap, agentList, tileH));
-                    else
-                        value = Min(value,MinMaxValue(newMap,agentList,tileH));
-
-                    b = value.getHeuristicValue();
-                    if ( a== -2000 || b!= a) // implique la variable valeur non setté ou que l'arbre exploré a renvoyé une meilleur valeur pour valeur
-                    {
-                        util = tileH;
-                    }
-                }
-                else
                 if(true) // regarder si c'est notre agent ou celui de l'adversaire pour prévoir les coups adverses
-                    value = Max(value, MinMaxValue(newMap, agentList, tileH));
+                    // La liste d'agent serait alors une liste d'entité et il y aurait besoin de foncions d'heuristiques pour chque entité
+                    value = Max(value, minManTile);
                 else
-                    value = Min(value,MinMaxValue(newMap,agentList,tileH));
+                    value = Min(value,minManTile);
+
+                if(minManTile.getHeuristicValue() == value.getHeuristicValue())
+                {
+                    if(util == null || tileH.getHeuristicValue() > util.getHeuristicValue() )
+                        util = tileH;
+                    System.out.println("Heur : " +util .getHeuristicValue()+ " Id tuile =" +util.getTileId());
+                }
 
             }
 
@@ -105,7 +97,13 @@ public class MinMax {
             for (WorkerAgent w : workers)
             {
                 ArrayList<TileHeuristic> workerTiles = problem.remove(w);
-                workerTiles.remove(tile);
+                TileHeuristic temp = new TileHeuristic(0,0) ;
+                for(TileHeuristic t :workerTiles)
+                {
+                    if(t.getTileId() == tile.getTileId())
+                        temp= t;
+                }
+                workerTiles.remove(temp);
                 problem.putIfAbsent(w, workerTiles);
             }
             problem.remove(worker);
