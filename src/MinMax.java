@@ -74,7 +74,6 @@ public class MinMax {
                 {
                     if(util == null || tileH.getHeuristicValue() > util.getHeuristicValue() )
                         util = tileH;
-                    System.out.println("Heur : " +util .getHeuristicValue()+ " Id tuile =" +util.getTileId());
                 }
 
             }
